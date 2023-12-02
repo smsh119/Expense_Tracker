@@ -1,0 +1,42 @@
+.signup-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 80px;
+}
+
+.signup-container > h2 {
+	margin-bottom: 20px;
+	font-size: 2rem;
+}
+
+.signup-container > input {
+	padding: 5px 20px;
+	margin-bottom: 10px;
+	border-radius: 10px;
+	border: none;
+	background-color: rgb(236, 236, 236);
+	font-size: 1rem;
+}
+
+.signup-container > input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	display: none;
+}
+
+.signup-container > button {
+	margin-top: 20px;
+	padding: 0.5em 1.5em;
+	border: none;
+	border-radius: 5px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+.signup-container > button:hover {
+	background-color: rgb(214, 214, 214);
+}
+
+.signup-container > button:active {
+	background-color: rgb(143, 143, 143);
+}

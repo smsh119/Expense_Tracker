@@ -1,0 +1,22 @@
+.navbar-container {
+	display: flex;
+	justify-content: center;
+	gap: 3px;
+	font-size: 1.3rem;
+	background-color: blue;
+	margin-bottom: 20px;
+	padding: 10px 0;
+}
+.navbar-container > a {
+	text-decoration: none;
+	padding: 5px 10px;
+	background-color: rgb(71, 71, 255);
+	color: white;
+	cursor: pointer;
+}
+.navbar-container > a:hover {
+	background-color: rgb(44, 44, 252);
+}
+.navbar-container > .active {
+	background-color: black !important;
+}
