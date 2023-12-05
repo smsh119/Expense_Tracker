@@ -23,7 +23,7 @@ function Signup() {
             <input type="text" name="name" value={name} placeholder="Name" onChange={handleChange} />
             <input type="number" name="phone" value={phone} placeholder="phone" onChange={handleChange} />
             <input type="password" name="password" value={password} placeholder="password" onChange={handleChange} />
-            <button type="button" onClick={handleSubmit}>Log In</button>
+            <button type="button" onClick={handleSubmit}>Sign Up</button>
         </div>
     );
 }

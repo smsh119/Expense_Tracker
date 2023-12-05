@@ -6,7 +6,7 @@ import NavBar from './Components/NavBar';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Logout from './Components/Logout';
-import Tracker from './Components/Tracker';
+import Tracker from './Components/Tracker/Tracker';
 
 import './Styles/App.css';
 
@@ -14,13 +14,15 @@ function App() {
     return (
         <>
             <NavBar />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/tracker" element={<Tracker />} />
-                <Route path="/logout" element={<Logout />} />
-            </Routes>
+            <div className="body">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/tracker" element={<Tracker />} />
+                    <Route path="/logout" element={<Logout />} />
+                </Routes>
+            </div>
         </>
     );
 }

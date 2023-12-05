@@ -1,0 +1,42 @@
+import React from 'react';
+import propTypes from 'prop-types';
+import { getRandomString } from '../../utils/utilities';
+
+function List({
+    title, list, onClick, listName,
+}) {
+    let totalCost = 0;
+    return (
+        <div>
+            <h3>{title}</h3>
+            <hr />
+            {list.map((item, index) => {
+                totalCost += item.cost;
+                return (
+                    <div key={getRandomString(20)} className="list">
+                        <p>{`${index + 1}.`}</p>
+                        <p>{item.description}</p>
+                        <p>{item.cost}</p>
+                        <button type="button" onClick={() => onClick(index, listName)}>X</button>
+                    </div>
+                );
+            }) }
+            <hr />
+            <div className="list">
+                <p>Total</p>
+                <p />
+                <p id="total">{totalCost}</p>
+
+            </div>
+        </div>
+    );
+}
+
+List.propTypes = {
+    title: propTypes.string.isRequired,
+    list: propTypes.array.isRequired,
+    listName: propTypes.string.isRequired,
+    onClick: propTypes.func.isRequired,
+};
+
+export default List;
