@@ -9,6 +9,9 @@
 		"ecmaVersion": "latest"
 	},
 	"rules": {
-		"indent": ["error", 4]
+		"indent": ["error", 4],
+		"consistent-return": 0,
+		"new-cap": 0,
+		"no-underscore-dangle": 0
 	}
 }
