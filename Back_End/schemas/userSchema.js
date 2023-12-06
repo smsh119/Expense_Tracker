@@ -13,6 +13,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    recordId: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Record',
+    },
 });
 
 module.exports = userSchema;
