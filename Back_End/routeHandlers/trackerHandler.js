@@ -15,16 +15,36 @@ router.get('/', checkLogin, async (req, res) => {
         const record = await Records
             .where('userId')
             .equals(req.userInfo._id)
+            .limit(1)
             .select(['incomes', 'expenses', 'availableBalance']);
-
         if (record && record.length > 0) {
             res.status(200).json({
-                data: record,
+                data: record[0],
             });
         } else {
-            res.status(500).json({
-                error: 'Internal server error.',
+            const newRecord = new Records({
+                incomes: [],
+                expenses: [],
+                userId: req.userInfo._id,
+                availableBalance: 0,
             });
+            const data = await newRecord.save();
+            const userData = await User.updateOne(
+                { _id: req.userInfo._id },
+                { recordId: data._id },
+                { new: true },
+            );
+            const { acknowledged } = userData;
+            if (acknowledged) {
+                res.status(200).json({
+                    data,
+                });
+            } else {
+                // could not store recordId to user document
+                res.status(500).json({
+                    error: 'Internal server error.',
+                });
+            }
         }
     } catch (error) {
         console.log(error);
@@ -39,14 +59,13 @@ router.post('/', checkLogin, async (req, res) => {
         const { userInfo, body } = req;
 
         const description = typeof (body.description) === 'string' && body.description.length > 0 ? body.description : false;
-        const cost = typeof (body.cost) === 'number' ? body.cost : false;
+        const cost = typeof (body.cost * 1) === 'number' ? body.cost * 1 : false;
         const operation = typeof (body.operation) === 'string' && ['income', 'expense'].indexOf(body.operation.toLowerCase()) > -1 ? body.operation.toLowerCase() : false;
 
         if (description && cost && operation) {
             const user = await User.find({ phone: userInfo.phone });
             if (user && user.length > 0) {
                 if (user[0].recordId) {
-                    // append the data to remaining document
                     const records = await Records.find({ _id: user[0].recordId });
                     if (records && records.length > 0) {
                         if (operation === 'income') {
@@ -76,31 +95,9 @@ router.post('/', checkLogin, async (req, res) => {
                         });
                     }
                 } else {
-                // create the record and add the data
-                    const record = new Records({
-                        incomes: [],
-                        expenses: [],
-                        userId: userInfo._id,
-                        availableBalance: operation === 'income' ? cost : -cost,
+                    res.status(500).json({
+                        error: 'Internal server error.',
                     });
-                    if (operation === 'income')record.incomes.push({ description, cost });
-                    else record.expenses.push({ description, cost });
-                    const data = await record.save();
-                    const userData = await User.updateOne(
-                        { _id: userInfo._id },
-                        { recordId: data._id },
-                        { new: true },
-                    );
-                    const { acknowledged } = userData;
-                    if (acknowledged) {
-                        res.status(200).json({
-                            message: 'Update successful',
-                        });
-                    } else {
-                        res.status(500).json({
-                            error: 'Internal server error.',
-                        });
-                    }
                 }
             } else {
                 res.status(404).json({
