@@ -7,6 +7,7 @@ import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Logout from './Components/Logout';
 import Tracker from './Components/Tracker/Tracker';
+import NotFound from './Components/NotFound';
 
 import './Styles/App.css';
 
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/tracker" element={<Tracker />} />
                     <Route path="/logout" element={<Logout />} />
+                    <Route path="/*" element={<NotFound />} />
                 </Routes>
             </div>
         </>

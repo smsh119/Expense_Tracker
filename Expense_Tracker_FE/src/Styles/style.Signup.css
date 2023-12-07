@@ -24,7 +24,16 @@
 .signup-container > input::-webkit-inner-spin-button {
 	display: none;
 }
-
+.signup-container > .error-div {
+	background-color: #b00020;
+	width: 190px;
+	padding: 10px 20px;
+	border-radius: 10px;
+	font-size: 0.7rem;
+	font-weight: bold;
+	color: white;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .signup-container > button {
 	margin-top: 20px;
 	padding: 0.5em 1.5em;

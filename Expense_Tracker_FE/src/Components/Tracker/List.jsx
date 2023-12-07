@@ -11,7 +11,7 @@ function List({
             <h3>{title}</h3>
             <hr />
             {list.map((item, index) => {
-                totalCost += item.cost;
+                totalCost += item.cost * 1;
                 return (
                     <div key={getRandomString(20)} className="list">
                         <p>{`${index + 1}.`}</p>
