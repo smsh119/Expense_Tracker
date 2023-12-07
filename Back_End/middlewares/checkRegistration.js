@@ -9,7 +9,7 @@ const checkRegistration = async (req, res, next) => {
         const user = await User.find({ phone });
         if (user && user.length > 0) {
             res.status(400).json({
-                message: 'User already registered!',
+                error: 'User already registered!',
             });
         } else {
             next();

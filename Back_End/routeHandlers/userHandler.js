@@ -53,12 +53,12 @@ router.post('/signup', checkRegistration, async (req, res) => {
             });
         } else {
             res.status(400).json({
-                Error: 'Please provide valid information.',
+                error: 'Please provide valid information.',
             });
         }
     } catch {
         res.status(500).json({
-            Error: 'Internal server problem',
+            error: 'Internal server problem',
         });
     }
 });
@@ -104,12 +104,12 @@ router.post('/login', async (req, res) => {
             }
         } else {
             res.status(400).json({
-                Error: 'Please provide valid information.',
+                error: 'Please provide valid information.',
             });
         }
     } catch (error) {
         res.status(500).json({
-            message: 'Internal server error.',
+            error: 'Internal server error.',
         });
     }
 });
