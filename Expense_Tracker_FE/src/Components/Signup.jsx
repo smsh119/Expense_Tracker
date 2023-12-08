@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import http from '../services/httpService';
+import auth from '../services/authService';
 import '../Styles/style.Signup.css';
 
 function Signup() {
@@ -16,20 +16,9 @@ function Signup() {
     };
 
     const handleSubmit = async () => {
-        try {
-            const res = await http.post('/user/signup', {
-                name,
-                phone,
-                password,
-            });
-            if (res.status === 200) {
-                window.location = '/login';
-            } else {
-                setError(res.body.error);
-            }
-        } catch (err) {
-            console.log(err);
-        }
+        const err = await auth.signup(name, phone, password);
+        if (err) setError(err);
+        else window.location = '/login';
     };
 
     return (

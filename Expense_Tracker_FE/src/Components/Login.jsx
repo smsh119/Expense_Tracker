@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { jwtDecode } from 'jwt-decode';
-import http from '../services/httpService';
-
+import auth from '../services/authService';
 import '../Styles/style.Login.css';
 
 function Login() {
@@ -15,25 +13,9 @@ function Login() {
     };
 
     const handleSubmit = async () => {
-        try {
-            const res = await http.post('/user/login', {
-                phone,
-                password,
-            });
-            if (res.status === 200) {
-                const { token } = res.body;
-                const tokenObj = jwtDecode(token);
-                http.setAuthToken(token);
-                localStorage.setItem('id', tokenObj._id);
-                localStorage.setItem('phone', tokenObj.phone);
-                window.location = '/tracker';
-            } else {
-                console.log(res);
-                setError(res.body.error);
-            }
-        } catch (err) {
-            console.log(err);
-        }
+        const err = await auth.login(phone, password);
+        if (err) setError(err);
+        else window.location = '/tracker';
     };
 
     return (

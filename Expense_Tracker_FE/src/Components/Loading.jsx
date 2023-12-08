@@ -1,9 +1,19 @@
 import React from 'react';
+import loadingFile from '../assets/loading.svg';
 
-const loading = () => (
-    <div>
-        <h1>Loading</h1>
-    </div>
-);
+const style = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '150px',
+};
 
-export default loading;
+function Loading() {
+    return (
+        <div style={style}>
+            <img src={loadingFile} alt="" />
+        </div>
+    );
+}
+
+export default Loading;
