@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:3000';
+const baseUrl = import.meta.env.VITE_BE_URL;
 
 function setAuthToken(token) {
     localStorage.setItem('token', token);
