@@ -9,6 +9,7 @@ const app = express();
 dotenv.config();
 app.use(cors());
 app.use(express.json());
+app.set('trust proxy', 1);
 
 // DB Connection
 mongoose.connect(process.env.MONGODB_CONN_STR)
@@ -38,6 +39,6 @@ const errorHandler = (err, req, res, next) => {
 
 app.use(errorHandler);
 
-app.listen(process.env.BE_PORT, () => {
+app.listen(process.env.BE_PORT, '0.0.0.0', () => {
     console.log(`Listening on port : ${process.env.BE_PORT}...`);
 });
