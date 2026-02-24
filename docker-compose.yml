@@ -9,6 +9,10 @@ services:
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
       MONGODB_CONN_STR: ${MONGODB_CONN_STR}
       BE_PORT: ${BE_PORT}
+
+    networks:
+      - shared-network
+
     expose:
       - "5000"
 
@@ -22,5 +26,5 @@ services:
       - backend
 
 networks:
-  default:
-    driver: bridge
+  shared-network:
+    external: true
