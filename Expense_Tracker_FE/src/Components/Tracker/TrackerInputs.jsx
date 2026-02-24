@@ -7,9 +7,11 @@ function TrackerInputs({
     return (
         <div className="inputs">
             <input type="text" name="description" placeholder="Item Description" value={description} onChange={handleChange} />
-            <input type="number" name="cost" placeholder="Expense/Income" value={cost} onChange={handleChange} />
-            <button type="button" onClick={() => handleClick('expense')}>Expense</button>
-            <button type="button" onClick={() => handleClick('income')}>Income</button>
+            <input type="number" name="cost" placeholder="Amount" value={cost} onChange={handleChange} />
+            <div className="buttons">
+                <button type="button" onClick={() => handleClick('expense')}>Expense</button>
+                <button type="button" onClick={() => handleClick('income')}>Income</button>
+            </div>
         </div>
     );
 }

@@ -9,7 +9,6 @@ function List({
     return (
         <div>
             <h3>{title}</h3>
-            <hr />
             {list.map((item, index) => {
                 totalCost += item.cost * 1;
                 return (
@@ -20,14 +19,12 @@ function List({
                         <button type="button" onClick={() => onClick(index, listName)}>X</button>
                     </div>
                 );
-            }) }
-            <hr />
-            <div className="list">
+            })}
+            {list?.length > 0 && <div className="list">
                 <p>Total</p>
                 <p />
                 <p id="total">{totalCost}</p>
-
-            </div>
+            </div>}
         </div>
     );
 }

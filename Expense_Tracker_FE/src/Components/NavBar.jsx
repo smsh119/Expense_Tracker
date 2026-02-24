@@ -9,16 +9,15 @@ function NavBar() {
         <nav className="navbar-container">
             {isLoggedIn ? (
                 <>
-                    <NavLink to="/tracker">Tracker</NavLink>
-                    <NavLink to="/logout">Logout</NavLink>
+                    <NavLink to="/tracker" className={({ isActive }) => (isActive ? 'active' : '')}>Tracker</NavLink>
+                    <NavLink to="/logout" className={({ isActive }) => (isActive ? 'active' : '')}>Logout</NavLink>
                 </>
             )
                 : (
                     <>
-                        <NavLink to="/">Home</NavLink>
-                        <NavLink to="/login">Log in</NavLink>
-                        <NavLink to="signup">Sign Up</NavLink>
-
+                        <NavLink to="/" end className={({ isActive }) => (isActive ? 'active' : '')}>Home</NavLink>
+                        <NavLink to="/login" className={({ isActive }) => (isActive ? 'active' : '')}>Log in</NavLink>
+                        <NavLink to="/signup" className={({ isActive }) => (isActive ? 'active' : '')}>Sign Up</NavLink>
                     </>
                 )}
         </nav>

@@ -1,0 +1,26 @@
+services:
+  backend:
+    build:
+      context: ./Back_End
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      SALT_ROUNDS: ${SALT_ROUNDS}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      MONGODB_CONN_STR: ${MONGODB_CONN_STR}
+      BE_PORT: ${BE_PORT}
+    expose:
+      - "5000"
+
+  frontend:
+    build:
+      context: ./Expense_Tracker_FE
+      args:
+        VITE_BE_URL: ${VITE_BE_URL}
+    restart: unless-stopped
+    depends_on:
+      - backend
+
+networks:
+  default:
+    driver: bridge

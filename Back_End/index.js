@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 // DB Connection
-mongoose.connect('mongodb://localhost/Expense_Tracker')
+mongoose.connect(process.env.MONGODB_CONN_STR)
     .then(() => {
         console.log('DB Connection Stablished...');
     }).catch(() => {
@@ -38,6 +38,6 @@ const errorHandler = (err, req, res, next) => {
 
 app.use(errorHandler);
 
-app.listen(3000, () => {
-    console.log('Listening on port : 3000...');
+app.listen(process.env.BE_PORT, () => {
+    console.log(`Listening on port : ${process.env.BE_PORT}...`);
 });

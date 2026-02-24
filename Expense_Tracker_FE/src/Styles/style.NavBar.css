@@ -1,22 +1,52 @@
 .navbar-container {
 	display: flex;
 	justify-content: center;
-	gap: 3px;
-	font-size: 1.3rem;
-	background-color: blue;
-	margin-bottom: 20px;
-	padding: 10px 0;
+	align-items: center;
+	gap: 1.5rem;
+	padding: 1rem 2rem;
+	/* Match balance-card background */
+	background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+	box-shadow: var(--shadow-md);
+	margin-bottom: 2rem;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+	font-family: var(--font-main);
 }
-.navbar-container > a {
+
+.navbar-container>a {
 	text-decoration: none;
-	padding: 5px 10px;
-	background-color: rgb(71, 71, 255);
+	font-size: 1rem;
+	font-weight: 500;
+	color: rgba(255, 255, 255, 0.85);
+	/* Semi-transparent white */
+	padding: 0.5rem 1rem;
+	border-radius: var(--radius-md);
+	transition: all 0.2s ease;
+	position: relative;
+}
+
+.navbar-container>a:hover {
 	color: white;
-	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.15);
+	transform: translateY(-1px);
 }
-.navbar-container > a:hover {
-	background-color: rgb(44, 44, 252);
+
+.navbar-container>a.active {
+	color: var(--primary-color);
+	background-color: white;
+	font-weight: 600;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-.navbar-container > .active {
-	background-color: black !important;
+
+@media screen and (max-width: 600px) {
+	.navbar-container {
+		gap: 0.5rem;
+		padding: 0.75rem;
+		font-size: 0.9rem;
+	}
+
+	.navbar-container>a {
+		padding: 0.4rem 0.8rem;
+	}
 }

@@ -32,15 +32,15 @@ function Tracker() {
     }, []);
 
     const handleChange = ({ target }) => {
-        if (error)setError('');
-        if (target.name === 'description')setDescription(target.value);
-        if (target.name === 'cost')setCost(target.value);
+        if (error) setError('');
+        if (target.name === 'description') setDescription(target.value);
+        if (target.name === 'cost') setCost(target.value);
     };
 
     const handleClick = async (operation) => {
         const states = { data, description, cost };
         const res = await tracker.postRequest(description, cost, operation, states);
-        if (res.error)setError(res.error);
+        if (res.error) setError(res.error);
         else {
             setData(res.data);
             setDescription('');
@@ -56,6 +56,14 @@ function Tracker() {
     return (
         <div className="tracker-container">
             <h1>Expense Tracker</h1>
+
+            <div className="balance-card">
+                <h2>Available Balance</h2>
+                <span className={`balance-amount ${data.availableBalance >= 0 ? 'positive' : 'negative'}`}>
+                    {Number(data.availableBalance).toFixed(2)}
+                </span>
+            </div>
+
             <TrackerInputs
                 description={description}
                 cost={cost}
@@ -63,7 +71,6 @@ function Tracker() {
                 handleClick={handleClick}
             />
             {error && <div className="error-div">{error}</div>}
-            <p>{`Available Balance: ${data.availableBalance}`}</p>
             <div className="expense-income-container">
                 <List title="Incomes" list={data.incomes} onClick={handleDelete} listName="incomes" />
                 <List title="Expenses" list={data.expenses} onClick={handleDelete} listName="expenses" />

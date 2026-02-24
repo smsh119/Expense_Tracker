@@ -1,8 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 * {
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
 
-.body {
-	padding: 0 10%;
+:root {
+	--primary-color: #6366f1;
+	--secondary-color: #8b5cf6;
+	--income-color: #10b981;
+	--expense-color: #ef4444;
+	--text-dark: #1f2937;
+	--text-light: #6b7280;
+	--bg-gradient: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+	--bg-color: #f3f4f6;
+	--card-bg: #ffffff;
+	--shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+	--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+	--radius-lg: 1rem;
+	--radius-md: 0.5rem;
+	--font-main: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+body {
+	font-family: var(--font-main);
+	background-color: var(--bg-color);
+	margin: 0;
+	padding: 0;
+	color: var(--text-dark);
 }

@@ -1,53 +1,91 @@
 .login-container {
+	max-width: 400px;
+	width: 90%;
+	margin: 4rem auto;
+	padding: 2.5rem;
+	background: var(--card-bg, #ffffff);
+	border-radius: var(--radius-lg, 1rem);
+	box-shadow: var(--shadow-lg, 0 10px 25px -5px rgba(0, 0, 0, 0.1));
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin-top: 80px;
+	gap: 1.25rem;
+	font-family: var(--font-main, 'Poppins', sans-serif);
 }
 
-.login-container > h2 {
-	margin-bottom: 20px;
+.login-container h2 {
+	text-align: center;
 	font-size: 2rem;
+	font-weight: 700;
+	color: var(--text-dark, #1f2937);
+	margin: 0 0 0.5rem 0;
+	background: linear-gradient(to right, var(--primary-color, #6366f1), var(--secondary-color, #8b5cf6));
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
-.login-container > input {
-	padding: 5px 20px;
-	margin-bottom: 10px;
-	border-radius: 10px;
-	border: none;
-	background-color: rgb(236, 236, 236);
+.login-container input {
+	padding: 0.8rem 1rem;
+	border: 1px solid #d1d5db;
+	border-radius: var(--radius-md, 0.5rem);
 	font-size: 1rem;
+	background-color: #f9fafb;
+	transition: all 0.2s ease;
+	font-family: inherit;
+	color: var(--text-dark, #1f2937);
 }
 
-.login-container > input::-webkit-outer-spin-button,
-.login-container > input::-webkit-inner-spin-button {
-	display: none;
+.login-container input:focus {
+	outline: none;
+	border-color: var(--primary-color, #6366f1);
+	box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+	background-color: white;
 }
 
-.login-container > .error-div {
-	background-color: #b00020;
-	width: 190px;
-	padding: 10px 20px;
-	border-radius: 10px;
-	font-size: 0.7rem;
-	font-weight: bold;
-	color: white;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Remove number spinners */
+.login-container input::-webkit-outer-spin-button,
+.login-container input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 
-.login-container > button {
-	margin-top: 20px;
-	padding: 0.5em 1.5em;
+.error-div {
+	background-color: #fee2e2;
+	border: 1px solid #fecaca;
+	color: #b91c1c;
+	padding: 0.75rem;
+	border-radius: var(--radius-md, 0.5rem);
+	text-align: center;
+	font-size: 0.9rem;
+	font-weight: 500;
+}
+
+.login-container button {
+	padding: 0.8rem;
 	border: none;
-	border-radius: 5px;
-	font-size: 1rem;
+	border-radius: var(--radius-md, 0.5rem);
+	font-size: 1.1rem;
+	font-weight: 600;
 	cursor: pointer;
-}
-.login-container > button:hover {
-	background-color: rgb(214, 214, 214);
+	background: linear-gradient(135deg, var(--primary-color, #6366f1), var(--secondary-color, #8b5cf6));
+	color: white;
+	transition: transform 0.1s ease, box-shadow 0.2s ease;
+	margin-top: 0.5rem;
 }
 
-.login-container > button:active {
-	background-color: rgb(143, 143, 143);
+.login-container button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	filter: brightness(110%);
+}
+
+.login-container button:active {
+	transform: translateY(0);
+}
+
+@media screen and (max-width: 480px) {
+	.login-container {
+		margin: 2rem auto;
+		padding: 1.5rem;
+	}
 }
