@@ -14,7 +14,8 @@ const checkRegistration = async (req, res, next) => {
         } else {
             next();
         }
-    } catch {
+    } catch (err) {
+        console.log(err);
         next('Registration Failure.');
     }
 };
