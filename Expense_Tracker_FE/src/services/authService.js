@@ -2,6 +2,12 @@ import { jwtDecode } from 'jwt-decode';
 import http from './httpService';
 
 const login = async (phone, password) => {
+    if (phone.length !== 11) {
+        return 'Please provide valid Phone number (11 Digits)';
+    }
+    if (password.length < 5 && password.length > 32) {
+        return 'Wrong Password';
+    }
     try {
         const res = await http.post('/user/login', {
             phone,
@@ -24,6 +30,15 @@ const login = async (phone, password) => {
 };
 
 const signup = async (name, phone, password) => {
+    if (name.length === 0 || name.length > 20) {
+        return 'Please provide valid Name (Maximum 20 Characters)';
+    }
+    if (phone.length !== 11) {
+        return 'Please provide valid Phone number (11 Digits)';
+    }
+    if (password.length < 5 || password.length > 32) {
+        return 'Please provide a valid password (5 - 32 Characters)';
+    }
     try {
         const res = await http.post('/user/signup', {
             name,

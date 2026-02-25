@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import auth from '../services/authService';
 import '../Styles/style.Signup.css';
 
@@ -17,7 +17,7 @@ function Signup() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const err = await auth.signup(name, phone, password);
+        const err = await auth.signup(name.trim(), phone.trim(), password.trim());
         if (err) setError(err);
         else window.location = '/login';
     };

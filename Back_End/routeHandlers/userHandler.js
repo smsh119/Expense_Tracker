@@ -18,19 +18,19 @@ router.post('/signup', checkRegistration, async (req, res) => {
     try {
         const { body } = req;
         const name = typeof (body.name) === 'string'
-        && body.name.length > 0
-        && body.name.length < 21
-            ? body.name : false;
+        && body.name.trim().length > 0
+        && body.name.trim().length < 21
+            ? body.name.trim() : false;
 
         const phone = typeof (body.phone) === 'string'
-        && body.phone.length === 11
+        && body.phone.trim().length === 11
         && !Number.isNaN(body.phone)
-            ? body.phone : false;
+            ? body.phone.trim() : false;
 
         const password = typeof (req.body.password) === 'string'
-        && body.password.length > 5
-        && body.password.length < 33
-            ? body.password : false;
+        && body.password.trim().length > 5
+        && body.password.trim().length < 33
+            ? body.password.trim() : false;
 
         if (name && phone && password) {
             const hashedPassword = await bcrypt.hash(password, process.env.SALT_ROUNDS * 1);
@@ -48,12 +48,12 @@ router.post('/signup', checkRegistration, async (req, res) => {
                 _id: user._id,
             };
             res.status(200).json({
-                message: 'Created User Successfully!',
+                message: 'User Created Successfully!',
                 data,
             });
         } else {
             res.status(400).json({
-                error: 'Please provide valid information.',
+                error: 'Please provide valid Name, Phone and Password.',
             });
         }
     } catch {
@@ -68,14 +68,14 @@ router.post('/login', async (req, res) => {
         const { body } = req;
 
         const phone = typeof (body.phone) === 'string'
-        && body.phone.length === 11
+        && body.phone.trim().length === 11
         && !Number.isNaN(body.phone)
-            ? body.phone : false;
+            ? body.phone.trim() : false;
 
         const password = typeof (req.body.password) === 'string'
-        && body.password.length > 5
-        && body.password.length < 33
-            ? body.password : false;
+        && body.password.trim().length > 0
+        && body.password.trim().length < 33
+            ? body.password.trim() : false;
 
         if (phone && password) {
             const user = await User.find({ phone: body.phone });

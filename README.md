@@ -100,4 +100,9 @@ This project was created to:
 - Practice building scalable and maintainable systems
 - Strengthen knowledge of the MERN ecosystem
 
+## 🔗 Live Demo
+
+[View the live demo](https://expense-tracker.suzatsmsh.cloud)
+
 > A practice full-stack project focused on real-world expense management and data handling.
+
